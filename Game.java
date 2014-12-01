@@ -382,7 +382,9 @@ public class Game
             else
             {
                 System.out.println("You have picked up the "+newWeapon.getDesc());
+                currentRoom.removeItem(newWeapon.getDesc());
                 System.out.println("     and have dropped your "+currentWeapon.getDesc());
+                currentRoom.addItem(currentWeapon.getDesc(), currentWeapon);
                 currentWeapon = newWeapon;
             }
 
