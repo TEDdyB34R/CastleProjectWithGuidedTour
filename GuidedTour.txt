@@ -1,1 +1,51 @@
 go north
+pickup
+attack
+go north
+go east
+attack
+go north
+go north
+go east
+attack
+pickup
+go south
+attack
+go east
+go east
+go north
+pull lever
+go up
+go south
+attack
+go west
+go south
+go west
+go west
+go west
+pickup
+attack
+go east
+go south
+go east
+go south
+go east
+attack
+go up
+attack
+go north
+go west
+attack
+go west
+go north
+go north
+attack
+go east
+go east
+pickup
+go west
+go west
+attack
+go west
+attack
+go north

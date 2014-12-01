@@ -23,10 +23,4 @@ public class BossRoom extends Room
         return true;
     }
     
-    public String getLongDescription()
-    {
-        String returnString = super.getLongDescription() +
-                                "This is the lair of the Boss of this floor!";
-        return returnString;
-    }
 }

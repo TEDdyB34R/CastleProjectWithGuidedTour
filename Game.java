@@ -24,16 +24,17 @@ public class Game
     private HashMap<String, Monster> monsterpedia;
 
     private Parser parser;
-    //private ParserWithFileInput parserWithFileInput;
+    private ParserWithFileInput parserWithFileInput;
 
+    /*rooms are named based on which square they fall on in the grid
+            and what "floor" they are on
+            grid is a 5x5 square using letters a-e for the first row, etc */
     //rooms on floor 1
-    static Room b1, c1, e1, g1, h1, i1, j1, k1, l1, p1, q1, r1, s1, t1, u1;
+    static Room b1, c1, e1, g1, h1, i1, j1, k1, l1, n1, p1, q1, r1, s1, t1, u1;
     //rooms on floor 2
-    static Room d2, e2, i2, j2, k2, l2, m2, n2, q2, r2, w2;
+    static Room d2, e2, i2, j2, k2, l2, m2, n2, q2, r2, w2, x2;
     //rooms on floor 3
-    static Room a3, g3, h3, i3, l3, q3, r3, s3, x3;
-    //Boss room for each respective floor
-    private BossRoom n1, x2, f3; 
+    static Room a3, f3, g3, h3, i3, l3, q3, r3, s3, x3;
 
     public Game()
     {
@@ -54,10 +55,10 @@ public class Game
         fillRooms();
         currentRoom = u1;
         parser = new Parser();
-        //parserWithFileInput = new ParserWithFileInput();
+        parserWithFileInput = new ParserWithFileInput();
     }
     //****************************************
-   /* public void playWithFileInput() 
+    public void playWithFileInput() 
     {            
         chooseHero("knight");
         currentHealth = thisHero.getMaxHealth();
@@ -71,10 +72,14 @@ public class Game
             Command command = parserWithFileInput.getCommand();
             finished = processCommand(command);
         }
+        if(currentRoom.getLongDescription().contains("princess"))
+        {
+            System.out.println("Congratulations! You have rescued the princess and have beaten the game!");
+        }
         System.out.println("Thank you for playing.  Good bye.");
     }
     //*****************************************
-    */
+    
     private void attack()
     {
         if(!currentRoom.hasMonster())
@@ -221,8 +226,8 @@ public class Game
     //Welcome message..
     private void printWelcome()
     {
-        System.out.println("Welcome to the World of ___!");
-        System.out.println("There are many things to discover");
+        System.out.println("Welcome to the World of the Dark Castle!");
+        System.out.println("There are many secrets to discover");
         System.out.println("         and many adventures to be had");
         System.out.println("May you find great glory in the destiny that awaits you");
         System.out.println();
@@ -293,7 +298,7 @@ public class Game
         monsterpedia.put(thisMonster.getDesc(), thisMonster);
         thisMonster = new Monster("zombie warrior", 75, 23, 10);
         monsterpedia.put(thisMonster.getDesc(), thisMonster);
-        thisMonster = new Monster("mutant tortise", 85, 28, 12);
+        thisMonster = new Monster("mutant tortoise", 85, 28, 12);
         monsterpedia.put(thisMonster.getDesc(), thisMonster);
     }
 
@@ -303,9 +308,9 @@ public class Game
      * /**
      * Select your Hero class. Avaiable classes include:
      * className     Health         Power          Defense
-     * rouge              90             13             8
-     * knight             100            10             10
-     * paladin            110            7              12
+     * rouge              90             13             5
+     * knight             100            10             7
+     * paladin            110            7              9
      */
     public void play(String heroType) 
     {            
@@ -354,6 +359,10 @@ public class Game
             if(currentRoom.hasMonster())
             {
                 attack();
+                if(currentHealth <= 0)
+                {
+                    wantToQuit = true;
+                }
             }
             else
             {
@@ -396,13 +405,17 @@ public class Game
                 {
                     System.out.println("you failed to escape and have taken 3 damage from the monster");
                     currentHealth -= 3;
+                    if(currentHealth <= 0)
+                    {
+                        wantToQuit = true;
+                    }
                 }
             }
         }
 
         if(currentRoom == a3)
         {
-            return true;
+            wantToQuit = true;
         }
         // else command not recognised.
         return wantToQuit;
@@ -559,8 +572,7 @@ public class Game
     }
 
     private void createFloor3() {
-        a3 = new Room("a room with piles of gold \n and a beautiful princess inside! \n" + 
-            "Congratulations! You have rescued the princess and beat the game!");
+        a3 = new BossRoom("a room with piles of gold \n and a beautiful princess inside!");
         f3 = new BossRoom("a room full of dead animals and rotting corpses");
         g3 = new Room("an empty room that inspires curiosity \n you see a menacing door to the west");
         h3 = new Room("a curious room full emptiness");
@@ -675,12 +687,12 @@ public class Game
         d2.addItem(armory.get("golden aegis").getDesc(),armory.get("golden aegis"));
         k2.addItem(armory.get("crossbow").getDesc(),armory.get("crossbow"));
 
-        //floor 3 weapons
+        //floor 3 weapons. and the princess...
         i3.addItem(armory.get("golden sword").getDesc(),armory.get("golden sword"));
 
         //adding monster to boss rooms
         n1.addItem(monsterpedia.get("evil witch").getDesc(),monsterpedia.get("evil witch"));
         x2.addItem(monsterpedia.get("zombie warrior").getDesc(),monsterpedia.get("zombie warrior"));
-        f3.addItem(monsterpedia.get("mutant tortise").getDesc(),monsterpedia.get("mutant tortise"));
+        f3.addItem(monsterpedia.get("mutant tortoise").getDesc(),monsterpedia.get("mutant tortoise"));
     }
 }
