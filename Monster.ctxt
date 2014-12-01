@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=pDesc\ pHealth\ pPower\ pDefense
+comment0.target=Monster(java.lang.String,\ int,\ int,\ int)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Monster\n
+comment1.params=
+comment1.target=int\ getHealth()
+comment2.params=
+comment2.target=int\ getPower()
+comment3.params=
+comment3.target=int\ getDefense()
+comment4.params=pDamage
+comment4.target=void\ takeDamage(int)
+comment5.params=
+comment5.target=void\ print()
+comment6.params=
+comment6.target=boolean\ isMonster()
+comment7.params=
+comment7.target=void\ refreshHealth()
+numComments=8

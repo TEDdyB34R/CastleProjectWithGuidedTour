@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=pDesc\ pPower\ pDefense
+comment0.target=Item(java.lang.String,\ int,\ int)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Item\n
+comment1.params=
+comment1.target=void\ print()
+comment2.params=
+comment2.target=java.lang.String\ getDesc()
+comment3.params=
+comment3.target=int\ getPower()
+comment4.params=
+comment4.target=int\ getDefense()
+comment5.params=newDesc
+comment5.target=void\ changeDesc(java.lang.String)
+comment6.params=pPower
+comment6.target=void\ addPower(int)
+comment7.params=pDefense
+comment7.target=void\ addDefense(int)
+comment8.params=
+comment8.target=boolean\ isWeapon()
+comment9.params=
+comment9.target=boolean\ isMonster()
+numComments=10
